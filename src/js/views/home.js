@@ -39,7 +39,7 @@ export const Home = () => {
 			<Container className="mt-5">
 				<Row>
 					<Col>
-						<h2>VEHICLES</h2>
+						<h2>PLANETS</h2>
 					</Col>
 				</Row>
 				<Row className="overflow-auto flex-nowrap">
@@ -49,7 +49,7 @@ export const Home = () => {
 								<Card.Img variant="top" src="https://via.placeholder.com/100" />
 								<Card.Body>
 									<Card.Title>{location.name}</Card.Title>
-									<Link to={`/details/location/${location.id}`}>
+									<Link to={`/details/location/1`}>
 										<Button>Read More!</Button>
 									</Link>
 									<Button variant="warning" onClick={() => actions.setfavorites(location.name)}>
