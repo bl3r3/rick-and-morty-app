@@ -32,14 +32,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			setfavorites: name => {
 				let store = getStore();
-				// if (!store.favorites.includes(name)) {
-				// 	let result = store.favorites;
-				// 	result.push(name);
-				// 	setStore({ favorites: result });
-				// }
-				let result = store.favorites;
-				result.push(name);
-				setStore({ favorites: result });
+				let filtered = store.favorites.filter(characters => characters.name != name.name);
+				filtered.push(name);
+				setStore({ favorites: filtered });
 			},
 			deleteFavorite: name => {
 				let store = getStore();
