@@ -3,10 +3,12 @@ import { useParams, Link } from "react-router-dom";
 import { Container, Col, Row, Table } from "react-bootstrap";
 import { Context } from "../store/appContext";
 
+//IMPORTS
+import ListResidents from "../component/ListResidents.jsx";
+
 export const DetailsLocation = () => {
 	const { store, actions } = useContext(Context);
 	const [state, setState] = useState(null);
-	const [resident, setResident] = useState(null);
 	const { id } = useParams();
 
 	useEffect(() => {
@@ -34,11 +36,7 @@ export const DetailsLocation = () => {
 								<li>Dimension: {state.dimension}</li>
 								<li>
 									Residents:
-									{state.residents.map((r, i) => (
-										<ul key={i}>
-											<li>{r}</li>
-										</ul>
-									))}
+									<ListResidents residents={state.residents} />
 								</li>
 							</ul>
 						</Col>

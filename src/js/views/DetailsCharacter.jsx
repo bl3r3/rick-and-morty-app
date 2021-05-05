@@ -4,13 +4,12 @@ import { Container, Col, Row, Table } from "react-bootstrap";
 import { Context } from "../store/appContext";
 
 export const DetailsCharacter = () => {
-	const { store, actions } = useContext(Context);
-	const [state, setState] = useState(null);
-	const { id, type } = useParams();
+	const [state, setState] = useState();
+	const { id } = useParams();
 
 	useEffect(() => {
 		const getResource = async () => {
-			let response = await fetch(`https://rickandmortyapi.com/api/${type}/${id}`);
+			let response = await fetch(`https://rickandmortyapi.com/api/character/${id}`);
 			let result = await response.json();
 			setState(result);
 		};

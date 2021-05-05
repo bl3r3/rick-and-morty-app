@@ -20,8 +20,14 @@ export const Navbar = () => {
 							<></>
 						) : (
 							store.favorites.map((fav, i) => (
-								<Dropdown.Item key={i}>
-									{fav}
+								<Dropdown.Item
+									href={
+										fav.type === "character"
+											? `/details/character/${fav.id}`
+											: `/details/location/${fav.id}`
+									}
+									key={i}>
+									{fav.name}
 									<span style={{ fontSize: "3rem" }} onClick={() => actions.deleteFavorite(fav)}>
 										✖
 									</span>
@@ -30,9 +36,6 @@ export const Navbar = () => {
 						)}
 					</Dropdown.Menu>
 				</Dropdown>
-				{/* <Link to="/demo">
-					<button className="btn btn-primary">Check the Context in action</button>
-				</Link> */}
 			</div>
 		</nav>
 	);

@@ -3,7 +3,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			characters: [],
 			locations: [],
-			planets: [],
+			residents: [],
 			details: [],
 			favorites: [],
 			demo: [
@@ -30,19 +30,21 @@ const getState = ({ getStore, getActions, setStore }) => {
 				let body = await response.json();
 				setStore({ locations: body.results });
 			},
-			// getPlanets: async () => {
-			// 	let response = await fetch("https://www.swapi.tech/api/planets");
-			// 	let body = await response.json();
-			// 	setStore({ planets: body.results });
-			// },
 			setfavorites: name => {
 				let store = getStore();
-				let result = store.favorites.push(name);
-				setStore(result);
+				// if (!store.favorites.includes(name)) {
+				// 	let result = store.favorites;
+				// 	result.push(name);
+				// 	setStore({ favorites: result });
+				// }
+				let result = store.favorites;
+				result.push(name);
+				setStore({ favorites: result });
 			},
-			deleteFavorite: fav => {
+			deleteFavorite: name => {
 				let store = getStore();
-				console.log(store.favorites);
+				const filterFav = store.favorites.filter(favoritos => favoritos != name);
+				setStore({ favorites: filterFav });
 			},
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {

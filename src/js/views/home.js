@@ -26,7 +26,15 @@ export const Home = () => {
 									<Link to={`/details/character/${character.id}`}>
 										<Button>Read More!</Button>
 									</Link>
-									<Button variant="warning" onClick={() => actions.setfavorites(character.name)}>
+									<Button
+										variant="warning"
+										onClick={() =>
+											actions.setfavorites({
+												name: character.name,
+												id: character.id,
+												type: "character"
+											})
+										}>
 										Fav
 									</Button>
 								</Card.Body>
@@ -52,7 +60,15 @@ export const Home = () => {
 									<Link to={`/details/location/1`}>
 										<Button>Read More!</Button>
 									</Link>
-									<Button variant="warning" onClick={() => actions.setfavorites(location.name)}>
+									<Button
+										variant="warning"
+										onClick={() =>
+											actions.setfavorites({
+												name: location.name,
+												id: location.id,
+												type: "location"
+											})
+										}>
 										Fav
 									</Button>
 								</Card.Body>
