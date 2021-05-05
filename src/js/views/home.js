@@ -29,7 +29,6 @@ export const Home = () => {
 											<Button>Read More!</Button>
 										</Link>
 										<Button
-											className="btn-fav"
 											variant="outline-danger"
 											onClick={() =>
 												actions.setfavorites({
