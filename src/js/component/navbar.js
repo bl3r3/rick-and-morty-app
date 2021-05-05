@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { Dropdown } from "react-bootstrap";
+import { Dropdown, Badge } from "react-bootstrap";
 import { Context } from "../store/appContext";
+import { Heart } from "react-bootstrap-icons";
 
 export const Navbar = () => {
 	const { store, actions } = useContext(Context);
@@ -12,28 +13,33 @@ export const Navbar = () => {
 			</Link>
 			<div className="ml-auto">
 				<Dropdown>
-					<Dropdown.Toggle variant="success" id="dropdown-basic">
-						{`Favorites ${store.favorites.length}`}
+					<Dropdown.Toggle variant="danger" id="dropdown-basic">
+						Favorites <Heart /> <Badge variant="light">{store.favorites.length}</Badge>
 					</Dropdown.Toggle>
-					<Dropdown.Menu>
-						{store.favorites == 0 ? (
-							<></>
-						) : (
-							store.favorites.map((fav, i) => (
-								<Dropdown.Item
-									href={
-										fav.type === "character"
-											? `/details/character/${fav.id}`
-											: `/details/location/${fav.id}`
-									}
-									key={i}>
-									{fav.name}
-									<span style={{ fontSize: "3rem" }} onClick={() => actions.deleteFavorite(fav)}>
-										✖
-									</span>
-								</Dropdown.Item>
-							))
-						)}
+					<Dropdown.Menu style={{ minWidth: "15rem" }}>
+						<ul>
+							{store.favorites == 0 ? (
+								<li style={{ fontSize: "1.3rem", listStyle: "none" }}>{"(Empty)"}</li>
+							) : (
+								store.favorites.map((fav, i) => (
+									<li key={i} style={{ fontSize: "1.3rem", listStyle: "none" }}>
+										<Link
+											to={
+												fav.type === "character"
+													? `/details/character/${fav.id}`
+													: `/details/location/${fav.id}`
+											}>
+											{fav.name}
+										</Link>
+										<span
+											style={{ fontSize: "1.2rem", cursor: "pointer" }}
+											onClick={() => actions.deleteFavorite(fav)}>
+											✖
+										</span>
+									</li>
+								))
+							)}
+						</ul>
 					</Dropdown.Menu>
 				</Dropdown>
 			</div>

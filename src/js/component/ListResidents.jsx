@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
 const Resident = ({ url }) => {
-	const [resident, setResident] = useState();
+	const [resident, setResident] = useState(undefined);
 	useEffect(() => {
 		const getResident = async () => {
 			const result = await (await fetch(url)).json();

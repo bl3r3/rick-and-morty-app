@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { Container, Col, Row, Table } from "react-bootstrap";
 import { Context } from "../store/appContext";
 
 export const DetailsCharacter = () => {
 	const [state, setState] = useState();
 	const { id } = useParams();
+	const history = useHistory();
 
 	useEffect(() => {
 		const getResource = async () => {
@@ -20,6 +21,9 @@ export const DetailsCharacter = () => {
 		<>
 			{state && (
 				<Container className="mt-5 pt-5">
+					<button className="btn btn-outline-danger m-2" onClick={() => history.goBack()}>
+						Go Back!
+					</button>
 					<Row>
 						<Col xs={4}>
 							<img src={state.image} className="w-100" />

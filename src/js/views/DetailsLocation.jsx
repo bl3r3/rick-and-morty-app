@@ -1,15 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
-import { Container, Col, Row, Table } from "react-bootstrap";
-import { Context } from "../store/appContext";
+import { useParams, useHistory, Link } from "react-router-dom";
+import { Container, Col, Row } from "react-bootstrap";
 
 //IMPORTS
 import ListResidents from "../component/ListResidents.jsx";
 
 export const DetailsLocation = () => {
-	const { store, actions } = useContext(Context);
 	const [state, setState] = useState(null);
 	const { id } = useParams();
+	const history = useHistory();
 
 	useEffect(() => {
 		const getResource = async () => {
@@ -25,11 +24,14 @@ export const DetailsLocation = () => {
 		<>
 			{state && (
 				<Container className="mt-5 pt-5">
+					<button className="btn btn-outline-danger m-2" onClick={() => history.goBack()}>
+						Go Back
+					</button>
 					<Row>
-						<Col xs={4}>
-							<img src="" className="w-100" />
+						<Col xs={6}>
+							<img src="https://via.placeholder.com/300" className="w-100" />
 						</Col>
-						<Col xs={8}>
+						<Col xs={6}>
 							<h2 className="text-center">{state.name}</h2>
 							<ul>
 								<li>Type: {state.type}</li>

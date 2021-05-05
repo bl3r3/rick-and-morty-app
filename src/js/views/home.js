@@ -1,8 +1,9 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { Container, Col, Row, Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import CardItems from "../component/CardItems.jsx";
 import { Context } from "../store/appContext";
+
+import { Heart } from "react-bootstrap-icons";
 
 import "../../styles/home.scss";
 
@@ -23,20 +24,23 @@ export const Home = () => {
 								<Card.Img variant="top" src={character.image} />
 								<Card.Body>
 									<Card.Title>{character.name}</Card.Title>
-									<Link to={`/details/character/${character.id}`}>
-										<Button>Read More!</Button>
-									</Link>
-									<Button
-										variant="warning"
-										onClick={() =>
-											actions.setfavorites({
-												name: character.name,
-												id: character.id,
-												type: "character"
-											})
-										}>
-										Fav
-									</Button>
+									<div className="d-flex flex-row w-100 justify-content-between">
+										<Link to={`/details/character/${character.id}`}>
+											<Button>Read More!</Button>
+										</Link>
+										<Button
+											className="btn-fav"
+											variant="outline-danger"
+											onClick={() =>
+												actions.setfavorites({
+													name: character.name,
+													id: character.id,
+													type: "character"
+												})
+											}>
+											<Heart />
+										</Button>
+									</div>
 								</Card.Body>
 							</Card>
 						</Col>
@@ -57,20 +61,22 @@ export const Home = () => {
 								<Card.Img variant="top" src="https://via.placeholder.com/100" />
 								<Card.Body>
 									<Card.Title>{location.name}</Card.Title>
-									<Link to={`/details/location/1`}>
-										<Button>Read More!</Button>
-									</Link>
-									<Button
-										variant="warning"
-										onClick={() =>
-											actions.setfavorites({
-												name: location.name,
-												id: location.id,
-												type: "location"
-											})
-										}>
-										Fav
-									</Button>
+									<div className="d-flex flex-row w-100 justify-content-between">
+										<Link to={`/details/location/${location.id}`}>
+											<Button>Read More!</Button>
+										</Link>
+										<Button
+											variant="outline-danger"
+											onClick={() =>
+												actions.setfavorites({
+													name: location.name,
+													id: location.id,
+													type: "location"
+												})
+											}>
+											<Heart />
+										</Button>
+									</div>
 								</Card.Body>
 							</Card>
 						</Col>
